@@ -1,0 +1,87 @@
+let div1 = document.createElement("div")
+let div2 = document.createElement("div")
+let div3 = document.createElement("div")
+let divResult = document.createElement("div")
+let div5 = document.createElement("div")
+let div6 = document.createElement("div")
+
+let h1tag = document.getElementsByTagName("h1")
+h1tag.innerText = "Hello World"
+
+
+
+let number = document.createElement("input")
+number.id = "number"
+number.type = "number"
+// number.min = "2"
+number.setAttribute("min" , "2") 
+// number.max = "5"
+number.style = "border : solid black 2px"
+
+let generate = document.createElement("button")
+generate.id = "generate"
+generate.innerText = "Generate"
+
+let clear = document.createElement("button")
+clear.id = "clear"
+clear.innerText = "Clear"
+
+div1.style = "margin-top: 10px; padding:10px"
+
+div1.appendChild(number)
+div1.appendChild(div2)
+div1.appendChild(generate)
+div1.appendChild(div3)
+div1.appendChild(clear)
+
+
+const fragment = new DocumentFragment();
+fragment.appendChild(div1);
+fragment.appendChild(divResult)
+
+document.body.append(fragment)
+
+// let num = number.innerText
+let selectedTag = document.getElementById("selectTag")
+// selectedTa
+// console.log(num + "   " + selectedTag)
+
+function GenarateHtml() {
+    let num = number.value//document.querySelector("#number")
+    let selectedTag = document.getElementById("selectTag")
+    let value = selectedTag.value
+    console.log(num + " and " + value)
+
+    if (num < 1 || num > 5) {
+        alert("Enter number between 1 to 5")
+        number.value = 1
+    } else {
+        for (let i = 1; i <= num; i++) {
+            let element = document.createElement(value);
+            element.textContent = "Hello World.."
+            // const newContent = document.createTextNode("Hello World!!!");
+            // element.appendChild(newContent);
+            divResult.appendChild(element)
+        }
+    }
+    console.log(h1tag)
+}
+
+generate.addEventListener("click", GenarateHtml)
+
+function Clear() {
+    number.value = 1
+    divResult.replaceChildren()
+}
+clear.addEventListener("click", Clear)
+
+
+function validateInput() {
+    // num = number.value
+    if (num < 1 || num > 5) {
+        alert("Enter number between 1 to 5")
+        number.value = 1
+    }
+}
+
+// number.addEventListener("outfocus", validateInput())
